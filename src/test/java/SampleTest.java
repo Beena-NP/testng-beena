@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SampleTest
@@ -94,6 +95,12 @@ public class SampleTest
         /*WebElement list = (WebElement) driver.findElements(By.className(".card"));
         Dimension i = list.getSize();
         System.out.println("No of products listed in the page is "+i);*/
+
+        String prodList = "div[id^='product_']";
+        List<WebElement> list = driver.findElements(By.cssSelector(prodList));
+        Integer listSize = list.size();
+        System.out.println("No of products listed in the page is "+listSize);
+
         driver.findElement(By.xpath("//span[@class=\"info mt-3 d-block\"and text()=\"Ruby on Rails Bag\"]")).click();
         String proTitle = driver.findElement(By.xpath("//h1[@class=\"product-title mt-2\"]")).getText();
         String actTitle = "Ruby on Rails Bag";
@@ -161,7 +168,7 @@ public class SampleTest
         driver.findElement(By.cssSelector(".glyphicon-minus-sign")).click();
         //driver.findElement(By.xpath("//a[@id=\"delete_line_item_249\"]")).click();
 //Empty Cart
-       /* driver.findElement(By.xpath("//input[@class=\"btn btn-outline-secondary\"]")).click();
+        driver.findElement(By.xpath("//input[@class=\"btn btn-outline-secondary\"]")).click();
         String cartEmptyMsg = driver.findElement(By.xpath("//div[@class=\"alert alert-info\"]")).getText();
         String cartEmptyMsgAct = "Your cart is empty";
         if(cartEmptyMsg.contentEquals(cartEmptyMsgAct))
@@ -175,7 +182,7 @@ public class SampleTest
 
 //Continue shopping
         driver.findElement(By.xpath("//a[@class=\"btn btn-outline-secondary\"]")).click();
-        System.out.println("Continue shopping");*/
+        System.out.println("Continue shopping");
 
 
 

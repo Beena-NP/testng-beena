@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import util.DriverManager;
 
 public class LoginPage {
@@ -22,6 +24,9 @@ public class LoginPage {
     @FindBy(xpath = "//input[@class=\"btn btn-lg btn-success btn-block\"]")
     private WebElement loginBtn;
 
+    @FindBy(xpath="//a[text() = \"Forgot Password?\"]")
+    private WebElement forgotPassword;
+
     public void enterValue(WebElement field, String value)
     {
         field.click();
@@ -35,6 +40,13 @@ public class LoginPage {
         enterValue(passwordField, password);
         loginBtn.click();
         return new HomePage();
+    }
+    public PasswordReset recoverPassword()
+    {
+        WebDriverWait wait = new WebDriverWait(DriverManager.driver,70);
+        wait.until(ExpectedConditions.elementToBeClickable(forgotPassword));
+        forgotPassword.click();
+        return new PasswordReset();
     }
 
 }
