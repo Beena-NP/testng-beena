@@ -3,6 +3,7 @@ package suite;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import util.ConfigFileReader;
 import util.DriverManager;
 
@@ -31,6 +32,13 @@ public class SuiteManager {
         DriverManager.driver.get(baseUrl);
 
     }
+    /*@BeforeTest
+    public void credentials()
+    {
+        String username = config.getProperty("username");
+        String passowrd = config.getProperty("password");
+
+    }*/
 
 
 
