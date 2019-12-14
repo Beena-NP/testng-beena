@@ -18,17 +18,17 @@ public class SuiteManager {
         driverManager = new DriverManager();
 
     }
-   @AfterSuite(alwaysRun = true)
+/*   @AfterSuite(alwaysRun = true)
     public void quitDriver()
     {
         DriverManager.driver.quit();
-    }
+    } */
 
     //kiosk mode run of a browser is also possible -- example is ATM machine
     @BeforeClass
     public void launchUrl()
     {
-        //DriverManager.driver.manage().window().maximize();
+        DriverManager.driver.manage().window().maximize();
 
         String baseUrl = config.getProperty("base_url");
         DriverManager.driver.get(baseUrl);

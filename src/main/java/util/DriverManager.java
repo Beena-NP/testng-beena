@@ -17,11 +17,11 @@ public class DriverManager {
 
 
     public DriverManager() throws MalformedURLException {
-        //String chromeDriverPath = System.getProperty("user.dir")+"/"+"src/main/resources/drivers/chromedriver";
-        //System.setProperty("webdriver.chrome.driver",chromeDriverPath);
-        //driver = new ChromeDriver();
+        String chromeDriverPath = System.getProperty("user.dir")+"/"+"src/main/resources/drivers/chromedriver";
+        System.setProperty("webdriver.chrome.driver",chromeDriverPath);
+        driver = new ChromeDriver();
 
-        DesiredCapabilities caps = new DesiredCapabilities();
+        /*DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("browser", "Chrome");
         caps.setCapability("browser_version", "70.0");
         caps.setCapability("os", "Windows");
@@ -29,11 +29,11 @@ public class DriverManager {
         caps.setCapability("resolution", "1024x768");
         caps.setCapability("name", "Bstack-[Java] Sample Test");
 
-        driver = new RemoteWebDriver(new URL(URL), caps);
+        driver = new RemoteWebDriver(new URL(URL), caps);*/
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.get("http://www.google.com/ncr");
+        //driver.get("http://www.google.com/ncr");
 
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
 
 
 
