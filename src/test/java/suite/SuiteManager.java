@@ -18,11 +18,11 @@ public class SuiteManager {
         driverManager = new DriverManager();
 
     }
-/*   @AfterSuite(alwaysRun = true)
+    @AfterSuite(alwaysRun = true)
     public void quitDriver()
     {
         DriverManager.driver.quit();
-    } */
+    }
 
     //kiosk mode run of a browser is also possible -- example is ATM machine
     @BeforeClass
