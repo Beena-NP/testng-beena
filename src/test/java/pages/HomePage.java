@@ -23,6 +23,9 @@ public class HomePage extends SuiteManager {
     @FindBy(xpath = "//input[@class=\"btn btn-success\"]")
     private WebElement searchButton;
 
+    @FindBy(xpath = "//a[text()=\"Clothing\"]")
+    private WebElement clothing;
+
     /*public void setLoginMsg(WebElement loginMsg) {
         this.loginMsg = loginMsg;
     }*/
@@ -44,6 +47,14 @@ public class HomePage extends SuiteManager {
      {
          action(searchField, item);
          searchButton.click();
+
+     }
+     public void clickClothing()
+     {
+         //WebDriverWait wait = new WebDriverWait(DriverManager.driver,50);
+         //wait.until(ExpectedConditions.elementToBeClickable(clothing));
+         clothing.click();
+         //return new ClothingPage();
      }
 
 }
