@@ -22,8 +22,6 @@ public class SearchAssignment extends SuiteManager {
     public LoginPage loginPage;
     public HomePage homePage;
 
-    ConfigFileReader readItem = new ConfigFileReader();
-    public String keyword = readItem.getProperty("searchItem");
 
     @Test(priority = 0, dataProvider = "loginCredentials", dataProviderClass = loginCredentials.class)
 
@@ -37,26 +35,46 @@ public class SearchAssignment extends SuiteManager {
     }
 
     @Test(priority = 1)
-    public void search()
-    {
-
-        homePage.searchPro(keyword);
-        System.out.println("The search keyword is " +keyword);
+    public void readSearchItem() {
+        String item = homePage.readItem();
+        homePage.searchPro(item);
+        System.out.println("The search keyword is " + item);
 
     }
 
     @Test(priority = 2)
-    public void searchResult()
-    {
-        String prodList = "div[id^='product_']";
-        List<WebElement> list = DriverManager.driver.findElements(By.cssSelector(prodList));
-        Integer listSize = list.size();
-        System.out.println("No of products listed in the page is "+listSize);
+    public void validateSearchItemNames() {
+        List<String> prodList = homePage.addSearchItems();
+        String key = homePage.readItem();
+        for (int i = 0; i < prodList.size(); i++)
+        {
+            String names = prodList.get(i);
+            System.out.println(names);
+            Assert.assertTrue(names.contains(key));
+            System.out.println("The product name contains the search keyword  "+key);
+        }
+        //System.out.println("The product names contain the search keyword  "+key);
+
+    }
+
+}
 
 
-        ArrayList<WebElement> products = new ArrayList<>();
 
-        for (int i = 0; i < list.size(); i++)
+
+
+
+
+
+        //String prodList = "div[id^='product_']";
+        //List<WebElement> list = DriverManager.driver.findElements(By.cssSelector(prodList));
+        //Integer listSize = list.size();
+        //System.out.println("No of products listed in the page is "+listSize);
+
+
+        //ArrayList<WebElement> products = new ArrayList<>();
+
+        /*for (int i = 0; i < list.size(); i++)
         {
             products.add(list.get(i));
 
@@ -81,7 +99,7 @@ public class SearchAssignment extends SuiteManager {
                 System.out.println("The product name does not contain the search keyword "+keyword);
 
             }
-        }
+        }*/
         /*for(int j=0;j<list.size();j++)
         {
           //  Assert.assertTrue(actName.equalsIgnoreCase((keyword)), "The product names do not contain the search keyword");
@@ -106,10 +124,10 @@ public class SearchAssignment extends SuiteManager {
         //return products; ArrayList<WebElement>
 
 
-    }
 
 
-}
+
+
 
 /*
 public BasePage basePage;

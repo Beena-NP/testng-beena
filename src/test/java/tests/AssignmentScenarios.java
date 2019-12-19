@@ -40,6 +40,7 @@ public class AssignmentScenarios extends SuiteManager {
         base = new BasePage();
         login = base.clickLoginButton();
 
+    //Read the credentials from config file
         ConfigFileReader con = new ConfigFileReader();
         String uname = con.getProperty("username");
         String pwd = con.getProperty("password");
@@ -88,11 +89,13 @@ public class AssignmentScenarios extends SuiteManager {
         Assert.assertEquals(actProName,expProName);
         System.out.println("Product details page is displayed");
 
+     //Add to cart if the button is enabled
         WebElement cart = DriverManager.driver.findElement(By.id(cartButon));
         Assert.assertTrue(cart.isEnabled());
         cart.click();
         System.out.println("Product added to the cart");
 
+     //Invalid Coupon code entry
         DriverManager.driver.findElement(By.id(coupon)).sendKeys("abcd");
         DriverManager.driver.findElement(By.xpath(applyCoupon)).click();
         String couponValidationActualMsg = DriverManager.driver.findElement(By.xpath(couponMsg)).getText();
